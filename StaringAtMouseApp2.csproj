@@ -101,5 +101,14 @@
   <ItemGroup>
     <Resource Include="Resources\eye_zero_degrees_closed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\lose.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\win.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

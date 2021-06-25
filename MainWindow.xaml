@@ -11,63 +11,73 @@
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Background="Black">
-    <Grid PreviewMouseMove="Grid_PreviewMouseMove"
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ColorAnimation From="Black" To="White" Duration="0:0:6" Storyboard.TargetProperty="(Window.Background).(SolidColorBrush.Color)" AutoReverse="True"></ColorAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="Transparent">
+        <Grid Name="MouseGrid"
+              Background="Transparent"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Panel.ZIndex="1"></Grid>
+        <Grid PreviewMouseMove="Grid_PreviewMouseMove"
           Background="Transparent"
           MouseLeave="MainGrid_MouseLeave"
           Name="MainGrid"
           RenderTransformOrigin=".5, .5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RenderTransform>
-            <RotateTransform x:Name="DoNotFreeze"></RotateTransform>
-        </Grid.RenderTransform>
-        <Grid.Triggers>
-            <EventTrigger RoutedEvent="Loaded">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <DoubleAnimation From="-20"
-                                         To="20"
-                                         AutoReverse="True"
-                                         RepeatBehavior="Forever"
-                                         Duration="0:0:5"
-                                         AccelerationRatio="0.3"
-                                         DecelerationRatio="0.3"
-                                         Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)"></DoubleAnimation>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </Grid.Triggers>
-        <TextBlock Name="TimeBlock"
-                   Text="Time survived: 0"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RenderTransform>
+                <RotateTransform x:Name="DoNotFreeze"></RotateTransform>
+            </Grid.RenderTransform>
+            <Grid.Resources>
+                <Storyboard x:Key="ShakingAnimation"></Storyboard>
+            </Grid.Resources>
+            <Rectangle Grid.ColumnSpan="3"
+                       Name="MyRect"
+                       Fill="Black"
+                       Margin="0 -1 0 0"
+                       StrokeThickness="1"
+                       Stroke="{x:Null}"
+                       Opacity="0">
+            </Rectangle>
+            <TextBlock Name="TimeBlock"
+                   Text="Seconds survived: 0"
                    Grid.ColumnSpan="3"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="40"></TextBlock>
-        <Canvas Name="TextBlockCanvas"
+            <Canvas Name="TextBlockCanvas"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"></Canvas>
-        <Image Source="Resources/eye_zero_degrees_closed.png"
+            <Image Source="Resources/eye_zero_degrees_closed.png"
                Name="LeftEyeImage"
                RenderTransformOrigin=".5, .5"
                Panel.ZIndex="-1"
                VerticalAlignment="Center"></Image>
-        <Image Source="Resources/eye_zero_degrees_closed.png"
+            <Image Source="Resources/eye_zero_degrees_closed.png"
                Name="RightEyeImage"
                RenderTransformOrigin=".5, .5"
                Panel.ZIndex="-1"
                Grid.Column="2"
                VerticalAlignment="Center">
-            <Image.RenderTransform>
-                <ScaleTransform ScaleX="-1"></ScaleTransform>
-            </Image.RenderTransform>
-        </Image>
-        <Rectangle Name="Mouth"
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="-1"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Rectangle Name="Mouth"
                    Fill="Black"
                    Height="20"
                    Margin="20"
@@ -75,5 +85,6 @@
                    Grid.ColumnSpan="3"
                    VerticalAlignment="Bottom"
                    ></Rectangle>
+        </Grid>
     </Grid>
 </Window>
