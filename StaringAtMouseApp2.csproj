@@ -110,5 +110,12 @@
   <ItemGroup>
     <Resource Include="Resources\win.wav" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Screenshots\InGame_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Screenshots\InGame_2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
